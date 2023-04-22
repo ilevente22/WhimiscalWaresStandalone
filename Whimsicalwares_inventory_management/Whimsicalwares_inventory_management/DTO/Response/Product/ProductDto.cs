@@ -31,8 +31,8 @@ namespace Whimsicalwares_inventory_management.DTO.response
         //public string ImageFileMediumAlternateText { get; set; }
         //public string CreationDateUtc { get; set; }
         public int MinimumQty { get; set; }
-        public string ShortDescription { get; set; }
-        public string LongDescription { get; set; }
+        //public string ShortDescription { get; set; }
+        //public string LongDescription { get; set; }
         //public string ManufacturerId { get; set; }
         //public string VendorId { get; set; }
         //public bool GiftWrapAllowed { get; set; }

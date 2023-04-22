@@ -12,34 +12,58 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Newtonsoft.Json;
 using Whimsicalwares_inventory_management.DTO.response;
+using Whimsicalwares_inventory_management.Interface;
+using Whimsicalwares_inventory_management.Repository;
+using Whimsicalwares_inventory_management.DTO.Response.ProductInventory;
+using Whimsicalwares_inventory_management.BO;
 
 namespace Whimsicalwares_inventory_management
 {
     public partial class Form1 : Form
     {
         BindingSource bindingSource = new BindingSource();
-        private static String BASE_URL = "http://20.234.113.211:8094//DesktopModules/Hotcakes/API/rest/v1/";
-        public Form1()
+        IWhimsicalShopClient ShopClient;
+        public Form1(IWhimsicalShopClient shopClient)
         {
+            this.ShopClient = shopClient;
             InitializeComponent();
             LoadData();
 
         }
         public async void LoadData()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(BASE_URL);
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await client.GetAsync("products?key=1-af60ed8e-94ff-4da2-a167-8b716ab5629a");
 
-            if (response.IsSuccessStatusCode)
+            List<ProductDto> products = await ShopClient.GetProducts();
+            List<InventoryItem> inventoryItems = await ShopClient.GetInventoryItems();
+
+            List<ProductBo> productBos = (
+            from p in products
+            join i in inventoryItems on p.Bvin equals i.ProductBvin into gj
+            from inv in gj.DefaultIfEmpty()
+            select new ProductBo
             {
-                string data = await response.Content.ReadAsStringAsync();
-                //var  A= JsonConvert.DeserializeObject<UpdateHotelInfo>(data);
-                // List<UpdateHotelInfo> a = response.Content.ReadAsAsync<List<UpdateHotelInfo>>().Result;
-                var result = JsonConvert.DeserializeObject<ProductsResponseRootDto>(data);
-                dataGridView1.DataSource = result.Content.Products;
+                Bvin = p.Bvin,
+                ProductSKU = p.Sku,
+                ProductName = p.ProductName,
+                Quantity = inv.QuantityOnHand // null coalescing operator to handle null values
+            }).ToList();
+
+            dataGridView1.DataSource = productBos;
+        }
+
+        private async void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView1.Columns["Quantity"].Index && e.ColumnIndex >= 0)
+            {
+                String newQuantityString = dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString();
+                String productId = dataGridView1.Rows[e.RowIndex].Cells["Bvin"].Value.ToString();
+
+
+                int newQuantity;
+
+                Int32.TryParse(newQuantityString.Trim(),out newQuantity);
+                await ShopClient.PostProductInventory(productId, newQuantity);
+                dataGridView1.Refresh();
             }
         }
     }
