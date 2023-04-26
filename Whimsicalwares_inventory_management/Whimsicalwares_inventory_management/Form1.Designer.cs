@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button_LowQuantity = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,15 +44,26 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1426, 714);
+            this.dataGridView1.Size = new System.Drawing.Size(1426, 621);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            // 
+            // button_LowQuantity
+            // 
+            this.button_LowQuantity.Location = new System.Drawing.Point(12, 639);
+            this.button_LowQuantity.Name = "button_LowQuantity";
+            this.button_LowQuantity.Size = new System.Drawing.Size(267, 31);
+            this.button_LowQuantity.TabIndex = 1;
+            this.button_LowQuantity.Text = "Alacsony termékkészletek megjelölése";
+            this.button_LowQuantity.UseVisualStyleBackColor = true;
+            this.button_LowQuantity.Click += new System.EventHandler(this.button_LowQuantity_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1450, 738);
+            this.Controls.Add(this.button_LowQuantity);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -60,9 +72,11 @@
 
         }
 
+
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button_LowQuantity;
     }
 }
 

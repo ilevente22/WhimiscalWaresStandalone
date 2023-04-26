@@ -28,8 +28,35 @@ namespace Whimsicalwares_inventory_management
             this.ShopClient = shopClient;
             InitializeComponent();
             LoadData();
-
+            
         }
+        private void ColorRowsByQuantity(DataGridView dgv)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.Cells["Quantity"].Value != null && int.TryParse(row.Cells["Quantity"].Value.ToString(), out int quantity))
+                {
+                    if (quantity <= 10)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                    }
+                }
+            }
+        }
+        private void ColorRowsByQuantityReset(DataGridView dgv)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.Cells["Quantity"].Value != null && int.TryParse(row.Cells["Quantity"].Value.ToString(), out int quantity))
+                {
+                    if (quantity <= 10)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.White;
+                    }
+                }
+            }
+        }
+
         public async void LoadData()
         {
 
@@ -58,13 +85,31 @@ namespace Whimsicalwares_inventory_management
                 String newQuantityString = dataGridView1.Rows[e.RowIndex].Cells["Quantity"].Value.ToString();
                 String productId = dataGridView1.Rows[e.RowIndex].Cells["Bvin"].Value.ToString();
 
-
+                ColorRowsByQuantity(dataGridView1);
                 int newQuantity;
 
                 Int32.TryParse(newQuantityString.Trim(),out newQuantity);
                 await ShopClient.PostProductInventory(productId, newQuantity);
                 dataGridView1.Refresh();
             }
+        }
+
+        private int clickCount = 0;
+        private void button_LowQuantity_Click(object sender, EventArgs e)
+        {
+            clickCount++;
+            if (clickCount == 1)
+            {
+                ColorRowsByQuantity(dataGridView1);
+                dataGridView1.CurrentCell = null;
+            }
+            else if(clickCount == 2)
+            {
+                ColorRowsByQuantityReset(dataGridView1);
+                clickCount = 0;
+                dataGridView1.CurrentCell = null;
+            }
+            
         }
     }
 }
