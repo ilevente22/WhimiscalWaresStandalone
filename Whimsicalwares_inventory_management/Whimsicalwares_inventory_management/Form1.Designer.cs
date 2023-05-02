@@ -44,12 +44,13 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1426, 621);
+            this.dataGridView1.Size = new System.Drawing.Size(1018, 621);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
             // button_LowQuantity
             // 
+            this.button_LowQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_LowQuantity.Location = new System.Drawing.Point(12, 639);
             this.button_LowQuantity.Name = "button_LowQuantity";
             this.button_LowQuantity.Size = new System.Drawing.Size(267, 31);
