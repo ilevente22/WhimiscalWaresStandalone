@@ -72,6 +72,7 @@ namespace Whimsicalwares_inventory_management
             from inv in gj.DefaultIfEmpty()
             select new ProductBo
             {
+                Bvin = p.Bvin,
                 ProductSKU = p.Sku,
                 ProductName = p.ProductName,
                 Quantity = inv.QuantityOnHand // null coalescing operator to handle null values
@@ -208,6 +209,7 @@ namespace Whimsicalwares_inventory_management
             from inv in gj.DefaultIfEmpty()
             select new ProductBo
             {
+                Bvin = p.Bvin,
                 ProductSKU = p.Sku,
                 ProductName = p.ProductName,
                 Quantity = inv.QuantityOnHand // null coalescing operator to handle null values

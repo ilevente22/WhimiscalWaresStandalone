@@ -8,6 +8,7 @@ namespace Whimsicalwares_inventory_management.BO
 {
     public class ProductBo
     {
+        public String Bvin { get; set; }
         public String ProductSKU { get; set; }
         public String ProductName { get; set; }
         public int Quantity { get; set; }
