@@ -25,7 +25,7 @@ namespace Whimsicalwares_inventory_management.DTO.response
         //public ShippingDetails ShippingDetails { get; set; }
         //public int ShippingMode { get; set; }
         //public int Status { get; set; }
-        //public string ImageFileSmall { get; set; }
+        public string ImageFileSmall { get; set; }
         //public string ImageFileSmallAlternateText { get; set; }
         //public string ImageFileMedium { get; set; }
         //public string ImageFileMediumAlternateText { get; set; }
