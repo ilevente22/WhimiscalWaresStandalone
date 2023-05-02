@@ -196,8 +196,33 @@ namespace Whimsicalwares_inventory_management
         {
             DisplayProductInfo(dataGridView1);
         }
-        
-        
+
+        private async void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            List<ProductDto> products = await ShopClient.GetProducts();
+            List<InventoryItem> inventoryItems = await ShopClient.GetInventoryItems();
+
+            List<ProductBo> productBos = (
+            from p in products
+            join i in inventoryItems on p.Bvin equals i.ProductBvin into gj
+            from inv in gj.DefaultIfEmpty()
+            select new ProductBo
+            {
+                ProductSKU = p.Sku,
+                ProductName = p.ProductName,
+                Quantity = inv.QuantityOnHand // null coalescing operator to handle null values
+            }).ToList();
+
+            string filter = textBox1.Text.ToLower();
+            // Filter the data based on the search string
+            var filteredProducts = productBos.Where(p =>
+            p.ProductName.ToLower().Contains(filter) ||
+            p.ProductSKU.ToLower().Contains(filter)
+            ).ToList();
+
+            // Set the filtered products as the data source of the DataGridView
+            dataGridView1.DataSource = filteredProducts;
+        }
     }
 
 }
