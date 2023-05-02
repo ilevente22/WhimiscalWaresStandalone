@@ -196,9 +196,8 @@ namespace Whimsicalwares_inventory_management
         {
             DisplayProductInfo(dataGridView1);
         }
-        ProductDto product = new ProductDto(); // példány létrehozása
-        string imageUrl = product.ImageFileSmall;
-
+        
+        
     }
 
 }
