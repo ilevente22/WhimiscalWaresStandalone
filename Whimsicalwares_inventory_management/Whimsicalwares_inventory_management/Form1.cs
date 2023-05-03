@@ -19,6 +19,7 @@ using Whimsicalwares_inventory_management.BO;
 using System.Reflection.Emit;
 using Whimsicalwares_inventory_management.DTO.Response.ProductInventory.Request;
 using ProgressBar = System.Windows.Forms.ProgressBar;
+using Newtonsoft.Json.Linq;
 
 namespace Whimsicalwares_inventory_management
 {
@@ -161,28 +162,36 @@ namespace Whimsicalwares_inventory_management
 
         private void button_Hozzaad_Click(object sender, EventArgs e)
         {
-            
-            int quantityToAdd = (int)numericUpDown1.Value;
-            if (dataGridView1.CurrentRow != null && numericUpDown1.Value > 0)
-            {
-                DataGridViewRow currentRow = dataGridView1.CurrentRow;
-                if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
-                {
-                    int newQuantity = currentQuantity + quantityToAdd;
-                    currentRow.Cells["Quantity"].Value = newQuantity;
-                    currentRow.Cells["Bvin"].Value.ToString();
-                    Progress();
-                }
-            }
-            
+            keszletNoveles keszletNoveles = new keszletNoveles();
+            keszletNoveles.KeszletNoveles(dataGridView1.CurrentRow, (int)numericUpDown1.Value);
+
         }
+
+        //public void KeszletNoveles(DataGridViewRow kivalasztott, int quantityToAdd)
+        //{
+        //    if (kivalasztott != null && quantityToAdd > 0)
+        //    {
+        //        DataGridViewRow currentRow = kivalasztott;
+        //        if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
+        //        {
+        //            int newQuantity = currentQuantity + quantityToAdd;
+        //            currentRow.Cells["Quantity"].Value = newQuantity;
+        //            currentRow.Cells["Bvin"].Value.ToString();
+        //            Progress();
+        //        }
+        //    }
+        //}
 
         private void button_Torol_Click(object sender, EventArgs e)
         {
-            int quantityToAdd = (int)numericUpDown1.Value;
-            if (dataGridView1.CurrentRow != null && numericUpDown1.Value > 0)
+            KeszletCsokkentes(dataGridView1.CurrentRow, (int)numericUpDown1.Value);
+        }
+
+        public void KeszletCsokkentes(DataGridViewRow kivalasztott, int quantityToAdd)
+        {
+            if (kivalasztott != null && quantityToAdd > 0)
             {
-                DataGridViewRow currentRow = dataGridView1.CurrentRow;
+                DataGridViewRow currentRow = kivalasztott;
                 if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
                 {
                     int newQuantity = currentQuantity - quantityToAdd;
