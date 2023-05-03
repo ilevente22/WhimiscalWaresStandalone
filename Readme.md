@@ -18,4 +18,4 @@
 
 ## Közreműködés
 
--Stackoverflow, OpenAI, Hotcakes dokumentáció, Content Owner a dizájn tervezésében
+-Stackoverflow, OpenAI, Hotcakes dokumentáció, Content Owner a dizájn tervezésében Kövesdi Luca, Kiss Bálint Data Manager
