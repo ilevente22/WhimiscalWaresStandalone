@@ -1,6 +1,6 @@
 # Whimsicalwares raktárkezelő
 
-![Whimsicalwares logó](https://20.234.113.211:8094//Portals/0/logo_zold.png?ver=3bnLbQoQzy01AXn4G1vUyg%3d%3d)
+![Whimsicalwares logó](http://20.234.113.211:8094//Portals/0/logo_zold.png?ver=3bnLbQoQzy01AXn4G1vUyg%3d%3d)
 
 
 ## Jellemzők
