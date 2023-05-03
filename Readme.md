@@ -6,18 +6,17 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nulla a fr
 
 ## Jellemzők
 
-- Lorem ipsum dolor sit amet
-- Consectetur adipiscing elit
-- Sed euismod nulla a fringilla dignissim
+- Raktárkészlet kezelés
+- Biztonságos törlés hozzáadás
+- Alacsony készletek kiemelése
 
 ## Telepítés
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nulla a fringilla dignissim, sapien justo lacinia risus.
-
+-Git-ről cloneozható és használható.
 ## Használat
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nulla a fringilla dignissim.
+- A készleteket lehet kiemelni pirossal egy gomb segitségévek (10 vagy 10 alattiakat) kiirja label-be a kijelölt sornak a termék nevét és mennyiségét. A fenti keresősávban lehet szűrni a termék névre, egy numberpickerben lehet a hozzáadni vagy törölni kivánt mennyiséget megadni. És végül a gombal kiválaszthatjuka törlés vagy hozzáadás opciót. Ezt követően egy messagebox felugrik és megkérdezi biztosak vagyunk e a szándékainkban. majd ha igenre nyomunk elmenti a termék mennyiséget.
 
 ## Közreműködés
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+-Stackoverflow, OpenAI, Hotcakes dokumentáció, Content Owner a dizájn tervezésében
