@@ -161,19 +161,30 @@ namespace Whimsicalwares_inventory_management
 
         private void button_Hozzaad_Click(object sender, EventArgs e)
         {
-            
             int quantityToAdd = (int)numericUpDown1.Value;
             if (dataGridView1.CurrentRow != null && numericUpDown1.Value > 0)
             {
-                DataGridViewRow currentRow = dataGridView1.CurrentRow;
-                if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
-                {
-                    int newQuantity = currentQuantity + quantityToAdd;
-                    currentRow.Cells["Quantity"].Value = newQuantity;
-                    currentRow.Cells["Bvin"].Value.ToString();
-                    Progress();
+                DialogResult result = MessageBox.Show("Biztosan hozzá akarsz adni termékeket?", "Hozzáadás megerősítése", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // A felhasználó kiválasztotta a "Yes" gombot, folytatjuk a törlést
+                    DataGridViewRow currentRow = dataGridView1.CurrentRow;
+                    if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
+                    {
+                        int newQuantity = currentQuantity + quantityToAdd;
+                        currentRow.Cells["Quantity"].Value = newQuantity;
+                        currentRow.Cells["Bvin"].Value.ToString();
+                        Progress();
+                    }
                 }
             }
+            else
+            {
+                // A felhasználó kiválasztotta a "No" gombot, nem töröljük az adatokat
+                return;
+            }
+            
             
         }
 
@@ -182,15 +193,28 @@ namespace Whimsicalwares_inventory_management
             int quantityToAdd = (int)numericUpDown1.Value;
             if (dataGridView1.CurrentRow != null && numericUpDown1.Value > 0)
             {
-                DataGridViewRow currentRow = dataGridView1.CurrentRow;
-                if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
-                {
-                    int newQuantity = currentQuantity - quantityToAdd;
-                    currentRow.Cells["Quantity"].Value = newQuantity;
-                    currentRow.Cells["Bvin"].Value.ToString();
-                    Progress();
+                DialogResult result = MessageBox.Show("Biztosan törölni akarsz?", "Törlés megerősítése", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // A felhasználó kiválasztotta a "Yes" gombot, folytatjuk a törlést
+                
+                    DataGridViewRow currentRow = dataGridView1.CurrentRow;
+                    if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
+                    {
+                        int newQuantity = currentQuantity - quantityToAdd;
+                        currentRow.Cells["Quantity"].Value = newQuantity;
+                        currentRow.Cells["Bvin"].Value.ToString();
+                        Progress();
+                    }
                 }
             }
+            else
+            {
+                // A felhasználó kiválasztotta a "No" gombot, nem töröljük az adatokat
+                return;
+            }
+           
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
