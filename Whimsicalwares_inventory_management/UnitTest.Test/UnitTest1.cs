@@ -17,11 +17,12 @@ namespace UnitTest.Test
         public void TestHozzaad(int ertek, int expected)
         {
             //arrange
-            DataGridViewRow termekMock = new DataGridViewRow();
+            DataGridView dgv = new DataGridView();
+            DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
+            col.Name = "Quantity";
+            dgv.Columns.Add(col);
 
-            DataGridViewTextBoxColumn quantityColumn = new DataGridViewTextBoxColumn();
-            quantityColumn.Name = "Quantity";
-            termekMock.Cells.Add(quantityColumn.CellTemplate.Clone() as DataGridViewCell);
+            DataGridViewRow termekMock = dgv.Rows[0];
             termekMock.Cells["Quantity"].Value = 5;
 
             //act
