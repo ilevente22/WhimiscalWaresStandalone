@@ -1,8 +1,7 @@
 # Whimsicalwares raktárkezelő
 
-![Whimsicalwares logó](https://via.placeholder.com/200x100)
+![Whimsicalwares logó]([https://via.placeholder.com/200x100](http://20.234.113.211:8094//Portals/0/logo_zold.png?ver=3bnLbQoQzy01AXn4G1vUyg%3d%3d))
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nulla a fringilla dignissim, sapien justo lacinia risus, eu feugiat nulla ante eu nulla. Duis auctor arcu ac justo consectetur, ac commodo metus volutpat. Fusce sit amet massa at quam vehicula consequat.
 
 ## Jellemzők
 
