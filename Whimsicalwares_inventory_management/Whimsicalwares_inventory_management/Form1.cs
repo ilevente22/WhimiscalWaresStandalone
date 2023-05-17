@@ -204,7 +204,8 @@ namespace Whimsicalwares_inventory_management
 
         private void button_Torol_Click(object sender, EventArgs e)
         {
-            int quantityToAdd = (int)numericUpDown1.Value;
+
+            int quantityToRemove = (int)numericUpDown1.Value;
             if (dataGridView1.CurrentRow != null && numericUpDown1.Value > 0)
             {
                 DialogResult result = MessageBox.Show("Biztosan törölni akarsz?", "Törlés megerősítése", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -216,10 +217,17 @@ namespace Whimsicalwares_inventory_management
                     DataGridViewRow currentRow = dataGridView1.CurrentRow;
                     if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
                     {
-                        int newQuantity = currentQuantity - quantityToAdd;
-                        currentRow.Cells["Quantity"].Value = newQuantity;
-                        currentRow.Cells["Bvin"].Value.ToString();
-                        Progress();
+                        if (currentQuantity - quantityToRemove < 0 )
+                        {
+                            MessageBox.Show("A termékkészletet nem lehet NEGATÍVBA csökkenteni");
+                        }
+                        else
+                        {
+                            int newQuantity = currentQuantity - quantityToRemove;
+                            currentRow.Cells["Quantity"].Value = newQuantity;
+                            currentRow.Cells["Bvin"].Value.ToString();
+                            Progress();
+                        }
                     }
                 }
             }
@@ -228,7 +236,10 @@ namespace Whimsicalwares_inventory_management
                 // A felhasználó kiválasztotta a "No" gombot, nem töröljük az adatokat
                 return;
             }
-            ColorCellsByQuantity(dataGridView1);
+            if (clickCount == 1)
+            {
+                ColorCellsByQuantity(dataGridView1);
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
