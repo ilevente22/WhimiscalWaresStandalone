@@ -59,6 +59,19 @@ namespace Whimsicalwares_inventory_management
                 }
             }
         }
+        private void ColorCellsByQuantityRecheck(DataGridView dgv)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.Cells["Quantity"].Value != null && int.TryParse(row.Cells["Quantity"].Value.ToString(), out int quantity))
+                {
+                    if (quantity >= 10)
+                    {
+                        row.Cells["Quantity"].Style.BackColor = Color.White;
+                    }
+                }
+            }
+        }
 
         public async void LoadData()
         {
@@ -98,6 +111,9 @@ namespace Whimsicalwares_inventory_management
         }
 
         private int clickCount = 0;
+        
+            
+        
         private void button_LowQuantity_Click(object sender, EventArgs e)
         {
             clickCount++;
@@ -106,13 +122,12 @@ namespace Whimsicalwares_inventory_management
                 ColorCellsByQuantity(dataGridView1);
                 dataGridView1.CurrentCell = null;
             }
-            else if(clickCount == 2)
+            else if (clickCount == 2)
             {
                 ColorCellsByQuantityReset(dataGridView1);
                 clickCount = 0;
                 dataGridView1.CurrentCell = null;
             }
-            
         }
 
         private void DisplayProductInfo(DataGridView dgv)
@@ -156,7 +171,7 @@ namespace Whimsicalwares_inventory_management
             {
                 control.Visible = true;
             }
-
+            
         }
 
         private void button_Hozzaad_Click(object sender, EventArgs e)
@@ -184,8 +199,7 @@ namespace Whimsicalwares_inventory_management
                 // A felhasználó kiválasztotta a "No" gombot, nem töröljük az adatokat
                 return;
             }
-            
-            
+            ColorCellsByQuantityRecheck(dataGridView1);
         }
 
         private void button_Torol_Click(object sender, EventArgs e)
@@ -214,7 +228,7 @@ namespace Whimsicalwares_inventory_management
                 // A felhasználó kiválasztotta a "No" gombot, nem töröljük az adatokat
                 return;
             }
-           
+            ColorCellsByQuantity(dataGridView1);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
