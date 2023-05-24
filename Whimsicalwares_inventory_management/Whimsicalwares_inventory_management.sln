@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whimsicalwares_inventory_management", "Whimsicalwares_inventory_management\Whimsicalwares_inventory_management.csproj", "{319AAE81-BD28-444A-AF7C-AF5C1F48C8F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest1.Test", "UnitTest1.Test\UnitTest1.Test.csproj", "{A478A642-63FA-493B-B803-2D9118825899}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{319AAE81-BD28-444A-AF7C-AF5C1F48C8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{319AAE81-BD28-444A-AF7C-AF5C1F48C8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{319AAE81-BD28-444A-AF7C-AF5C1F48C8F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A478A642-63FA-493B-B803-2D9118825899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A478A642-63FA-493B-B803-2D9118825899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A478A642-63FA-493B-B803-2D9118825899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A478A642-63FA-493B-B803-2D9118825899}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

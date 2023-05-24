@@ -145,102 +145,124 @@ namespace Whimsicalwares_inventory_management
         }
         
            
-        private async void Progress()
-        {
-            ProgressBar progressBar = new ProgressBar
-            {
-                Minimum = 0,
-                Maximum = 100,
-                Visible = false, // Elrejtjük az elején
-            };
-            progressBar.Size = new Size(200, 20); // állítsd be a progressbar méretét
-            progressBar.Location = new Point(this.ClientSize.Width / 2 - progressBar.Width / 2, this.ClientSize.Height / 2 - progressBar.Height / 2); // középre pozicionálás
-            this.Controls.Add(progressBar);
-            foreach (Control control in this.Controls)
-            {
-                control.Visible = false;
-            }
-            progressBar.Visible = true;
-            for (int i = 0; i <= 100; i++)
-            {
-                progressBar.Value = i;
-                await Task.Delay(5); // Várakozás 30 milliszekundumig
-            }
-            this.Controls.Remove(progressBar);
-            foreach (Control control in this.Controls)
-            {
-                control.Visible = true;
-            }
+        //public async void Progress()
+        //{
+        //    ProgressBar progressBar = new ProgressBar
+        //    {
+        //        Minimum = 0,
+        //        Maximum = 100,
+        //        Visible = false, // Elrejtjük az elején
+        //    };
+        //    progressBar.Size = new Size(200, 20); // állítsd be a progressbar méretét
+        //    progressBar.Location = new Point(this.ClientSize.Width / 2 - progressBar.Width / 2, this.ClientSize.Height / 2 - progressBar.Height / 2); // középre pozicionálás
+        //    this.Controls.Add(progressBar);
+        //    foreach (Control control in this.Controls)
+        //    {
+        //        control.Visible = false;
+        //    }
+        //    progressBar.Visible = true;
+        //    for (int i = 0; i <= 100; i++)
+        //    {
+        //        progressBar.Value = i;
+        //        await Task.Delay(5); // Várakozás 30 milliszekundumig
+        //    }
+        //    this.Controls.Remove(progressBar);
+        //    foreach (Control control in this.Controls)
+        //    {
+        //        control.Visible = true;
+        //    }
             
-        }
+        //}
 
         private void button_Hozzaad_Click(object sender, EventArgs e)
         {
-            int quantityToAdd = (int)numericUpDown1.Value;
-            if (dataGridView1.CurrentRow != null && numericUpDown1.Value > 0)
-            {
-                DialogResult result = MessageBox.Show("Biztosan hozzá akarsz adni termékeket?", "Hozzáadás megerősítése", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                // A felhasználó kiválasztotta a "Yes" gombot, folytatjuk a törlést
-                    DataGridViewRow currentRow = dataGridView1.CurrentRow;
-                    if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
-                    {
-                        int newQuantity = currentQuantity + quantityToAdd;
-                        currentRow.Cells["Quantity"].Value = newQuantity;
-                        currentRow.Cells["Bvin"].Value.ToString();
-                        Progress();
-                    }
-                }
-            }
-            else
-            {
-                // A felhasználó kiválasztotta a "No" gombot, nem töröljük az adatokat
-                return;
-            }
+            Hozzaad hozzaad = new Hozzaad();
+            hozzaad.dataGridView1 = dataGridView1;
+            hozzaad.numericUpDown1 = numericUpDown1;
+            hozzaad.formhozza = this;
+            hozzaad.hozzaad();
             ColorCellsByQuantityRecheck(dataGridView1);
         }
 
+        //public void Hozzaad(DataGridView dataGridView1, NumericUpDown numericUpDown1)
+        //{
+        //    int quantityToAdd = (int)numericUpDown1.Value;
+        //    if (dataGridView1.CurrentRow != null && numericUpDown1.Value > 0)
+        //    {
+        //        DialogResult result = MessageBox.Show("Biztosan hozzá akarsz adni termékeket?", "Hozzáadás megerősítése", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+        //        if (result == DialogResult.Yes)
+        //        {
+        //            // A felhasználó kiválasztotta a "Yes" gombot, folytatjuk a törlést
+        //            DataGridViewRow currentRow = dataGridView1.CurrentRow;
+        //            if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
+        //            {
+        //                int newQuantity = currentQuantity + quantityToAdd;
+        //                currentRow.Cells["Quantity"].Value = newQuantity;
+        //                currentRow.Cells["Bvin"].Value.ToString();
+        //                Progress();
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // A felhasználó kiválasztotta a "No" gombot, nem töröljük az adatokat
+        //        return;
+        //    }
+        //    
+        //}
+
         private void button_Torol_Click(object sender, EventArgs e)
         {
-
-            int quantityToRemove = (int)numericUpDown1.Value;
-            if (dataGridView1.CurrentRow != null && numericUpDown1.Value > 0)
-            {
-                DialogResult result = MessageBox.Show("Biztosan törölni akarsz?", "Törlés megerősítése", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                // A felhasználó kiválasztotta a "Yes" gombot, folytatjuk a törlést
-                
-                    DataGridViewRow currentRow = dataGridView1.CurrentRow;
-                    if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
-                    {
-                        if (currentQuantity - quantityToRemove < 0 )
-                        {
-                            MessageBox.Show("A termékkészletet nem lehet NEGATÍVBA csökkenteni");
-                        }
-                        else
-                        {
-                            int newQuantity = currentQuantity - quantityToRemove;
-                            currentRow.Cells["Quantity"].Value = newQuantity;
-                            currentRow.Cells["Bvin"].Value.ToString();
-                            Progress();
-                        }
-                    }
-                }
-            }
-            else
-            {
-                // A felhasználó kiválasztotta a "No" gombot, nem töröljük az adatokat
-                return;
-            }
+            Torol torol = new Torol();
+            torol.dataGridView1 = dataGridView1;
+            torol.numericUpDown1 = numericUpDown1;
+            torol.formtorol = this;
+            torol.torol();
             if (clickCount == 1)
             {
                 ColorCellsByQuantity(dataGridView1);
             }
         }
+
+        //public void Torol()
+        //{
+        //    int quantityToRemove = (int)numericUpDown1.Value;
+        //    if (dataGridView1.CurrentRow != null && numericUpDown1.Value > 0)
+        //    {
+        //        DialogResult result = MessageBox.Show("Biztosan törölni akarsz?", "Törlés megerősítése", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+        //        if (result == DialogResult.Yes)
+        //        {
+        //            // A felhasználó kiválasztotta a "Yes" gombot, folytatjuk a törlést
+
+        //            DataGridViewRow currentRow = dataGridView1.CurrentRow;
+        //            if (currentRow.Cells["Quantity"].Value != null && int.TryParse(currentRow.Cells["Quantity"].Value.ToString(), out int currentQuantity))
+        //            {
+        //                if (currentQuantity - quantityToRemove < 0)
+        //                {
+        //                    MessageBox.Show("A termékkészletet nem lehet NEGATÍVBA csökkenteni");
+        //                }
+        //                else
+        //                {
+        //                    int newQuantity = currentQuantity - quantityToRemove;
+        //                    currentRow.Cells["Quantity"].Value = newQuantity;
+        //                    currentRow.Cells["Bvin"].Value.ToString();
+        //                    //Progress();
+        //                }
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // A felhasználó kiválasztotta a "No" gombot, nem töröljük az adatokat
+        //        return;
+        //    }
+        //    if (clickCount == 1)
+        //    {
+        //        ColorCellsByQuantity(dataGridView1);
+        //    }
+        //}
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
